@@ -193,7 +193,9 @@
 </footer>
 
 <!-- BOTÓN WHATSAPP -->
-<a href="https://wa.me/51924769585" class="whatsapp-btn" title="Chatea con nosotros">💬</a>
+<a href="https://wa.me/51924769585" class="whatsapp-btn" title="Chatea con nosotros">
+  <img src="WhatsApp.svg.webp" alt="WhatsApp">
+</a>
 
 </body>
 </html>
