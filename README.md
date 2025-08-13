@@ -69,7 +69,7 @@
     <!-- Logo (puedes cambiar la ruta por tu logo real) -->
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Logo Corepsa">
     
-    <h1>¡Bienvenido a Corepsa!</h1>
+    <h1>¡Bienvenido a Gang!</h1>
     <p>Soluciones estructurales de alta ingeniería para la infraestructura vial del Perú.</p>
     
     <!-- Botón que lleva a gang.html -->
