@@ -5,8 +5,15 @@
     box-sizing: border-box;
 }
 
+/* Contenedor logo y título */
+.logo {
+    display: flex;
+    align-items: center; /* centra verticalmente */
+    gap: 10px;
+}
+
 body {
-    font-family: 'Montserrat', sans-serif !important;
+    font-family: 'Exo 2', sans-serif !important;
     background-color: #f4f4f4;
     color: #333;
     line-height: 1.6;
@@ -15,13 +22,53 @@ body {
 /* Header / Navegación */
 header {
     background-color: #fff;
-    padding: 15px 50px; /* antes 25px 60px */
+    padding: 20px 50px;/* padding relativo al tamaño de la pantalla */
     position: sticky;
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     font-family: 'Poppins', sans-serif !important;
-    
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+header .logo img {
+    width: 80px;
+    height: 80px;
+    transition: all 0.3s ease;
+}
+
+header .logo span {
+    font-size: 3rem;
+    line-height: 1; /* evita que baje o suba respecto al logo */
+    transition: all 0.3s ease;
+}
+
+header .nav-links li a {
+    font-size: 1.3rem;
+    padding: 30px 15px 8px;
+    transition: all 0.3s ease;
+}
+
+/* Header reducido al hacer scroll */
+header.scrolled {
+    padding: 10px 30px;   /* padding más pequeño fijo */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+header.scrolled .logo img {
+    width: 50px;
+    height: 50px;
+}
+
+header.scrolled .logo span {
+    font-size: 2rem;
+    line-height: 1; /* mantiene alineación vertical */
+}
+
+header.scrolled .nav-links li a {
+    font-size: 1rem;
+    padding: 15px 10px 5px;
 }
 
 .navbar {
@@ -35,11 +82,10 @@ nav ul {
     justify-content: center;
     list-style: none;
     gap: 25px;
+    flex-wrap: wrap; /* 🔹 permite que los botones bajen si no caben */
 }
 
-/* ---------------------- */
-/* BOTONES DEL MENÚ       */
-/* ---------------------- */
+/* BOTONES DEL MENÚ */
 .nav-links li a {
     font-size: 1.3rem;
     font-weight: 600;
@@ -77,38 +123,45 @@ nav ul {
     color: #fff;
 }
 
+/* Iconos específicos por botón */
 .nav-links li:nth-child(1) a::before { content: "\f015"; } /* Inicio → casa */
 .nav-links li:nth-child(2) a::before { content: "\f085"; } /* Servicios → engranaje */
-.nav-links li:nth-child(3) a::before { content: "\f0ad"; } /* Materiales → usuarios (puede simbolizar equipo/trabajo) */
+.nav-links li:nth-child(3) a::before { content: "\f0ad"; } /* Materiales → usuarios */
 .nav-links li:nth-child(4) a::before { content: "\f542"; } /* Proyectos → clipboard/lista */
 .nav-links li:nth-child(5) a::before { content: "\f02e"; } /* Certificaciones → medalla */
 .nav-links li:nth-child(6) a::before { content: "\f02d"; } /* Catálogo → libro */
 .nav-links li:nth-child(7) a::before { content: "\f0e0"; } /* Contacto → sobre */
 
-
-/* Logo */  
-.logo {
+/* Logo */
+.logo-link {
     display: flex;
     align-items: center;
     gap: 10px;
-    text-decoration: none; /* quitar subrayado */
+    text-decoration: none;
     cursor: pointer;
 }
 
-.logo img {
-    width: 80px;   /* antes 40px */
-    height: 80px;  /* antes 40px */
+.logo-link img {
+    width: 10vw;
+    max-width: 80px;
+    height: auto;
     transition: transform 0.3s ease;
 }
 
-.logo span {
-    font-size: 3rem;  /* antes 1.3rem */
+.logo-link span {
+    font-size: 3vw;
+    max-font-size: 3rem;
     font-weight: 700;
     color: #333;
+    transition: color 0.3s ease;
 }
 
-.logo:hover img {
-    transform: scale(1.05); /* efecto sutil al pasar el mouse */
+.logo-link:hover img {
+    transform: scale(1.05);
+}
+
+.logo-link:hover span {
+    color: rgb(37, 99, 235);
 }
 
 /* Secciones */
@@ -154,7 +207,7 @@ footer {
     padding: 20px 0;
 }
 
-/* Banner de inicio */
+/* Banner */
 .banner {
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
                 url('banner.jpg') center/cover no-repeat;
@@ -222,10 +275,7 @@ footer {
     color: #000 !important;
 }
 
-/* ============================= */
-/*  Menú hamburguesa responsive  */
-/* ============================= */
-
+/* Menú hamburguesa responsive */
 .menu-toggle {
     display: none;
     font-size: 2rem;
@@ -234,6 +284,20 @@ footer {
 }
 
 @media (max-width: 768px) {
+    header {
+        border-radius: 15px;
+    }
+
+    .logo-link img {
+        width: 15vw;
+        max-width: 60px;
+    }
+
+    .logo-link span {
+        font-size: 5vw;
+        max-font-size: 2rem;
+    }
+
     .menu-toggle {
         display: block;
     }
@@ -254,14 +318,11 @@ footer {
         transition: opacity 0.3s ease, transform 0.3s ease;
         z-index: 999;
         align-items: center;
-
-        /* 🔽 Scroll añadido */
-        max-height: 70vh;       /* limita altura a 70% pantalla */
-        overflow-y: auto;       /* scroll vertical si excede */
-        scrollbar-width: thin;  /* scroll fino en Firefox */
+        max-height: 70vh;
+        overflow-y: auto;
+        scrollbar-width: thin;
     }
 
-    /* 🔽 Estilo del scrollbar (Chrome/Edge/Safari) */
     .nav-links::-webkit-scrollbar {
         width: 6px;
     }
@@ -304,10 +365,7 @@ footer {
     }
 }
 
-
-/* ============================ */
-/*   BURBUJAS DE CONTACTO       */
-/* ============================ */
+/* Burbuja de contacto */
 .contact-bubbles {
     position: fixed;
     bottom: 20px;
@@ -337,17 +395,9 @@ footer {
     transform: scale(1.1);
 }
 
-/* WhatsApp */
-.bubble.whatsapp {
-    background-color: #25D366;
-}
+.bubble.whatsapp { background-color: #25D366; }
+.bubble.call { background-color: #0a66c2; }
 
-/* Llamada */
-.bubble.call {
-    background-color: #0a66c2;
-}
-
-/* Tooltip (cinta de texto) */
 .bubble .tooltip {
     position: absolute;
     right: 65px;
@@ -363,16 +413,9 @@ footer {
     pointer-events: none;
 }
 
-/* Colores según burbuja */
-.bubble.whatsapp .tooltip {
-    background: #25D366;
-}
+.bubble.whatsapp .tooltip { background: #25D366; }
+.bubble.call .tooltip { background: #0a66c2; }
 
-.bubble.call .tooltip {
-    background: #0a66c2;
-}
-
-/* Mostrar tooltip en hover */
 .bubble:hover .tooltip {
     opacity: 1;
     transform: translateX(0);
