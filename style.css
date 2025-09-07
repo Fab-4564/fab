@@ -639,7 +639,7 @@ footer {
     }
 
     .servicios-imagen img {
-        width: 80%;              /* ajusta tamaño en móvil */
+        width: 150%;              /* ajusta tamaño en móvil */
     }
 
     .servicios-texto h2 {
