@@ -303,24 +303,24 @@ footer {
     }
 
     .nav-links {
-        display: flex;
-        flex-direction: column;
+        display: grid;                
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* ajusta columnas al ancho disponible */
+        gap: 10px;                    
         position: absolute;
         top: 100%;
         left: 0;
-        width: 100%;
+        width: 100%;                 /* se ajusta al ancho del dispositivo */
+        max-width: 100vw;            /* nunca excede pantalla */
         background: #fff;
-        padding: 15px 0;
+        padding: 10px;
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         opacity: 0;
         transform: translateY(-10px);
         pointer-events: none;
         transition: opacity 0.3s ease, transform 0.3s ease;
         z-index: 999;
-        align-items: center;
-        max-height: 70vh;
+        max-height: 70vh;            /* scroll si excede */
         overflow-y: auto;
-        scrollbar-width: thin;
     }
 
     .nav-links::-webkit-scrollbar {
@@ -333,16 +333,20 @@ footer {
     }
 
     .nav-links li {
-        width: 100%;
         text-align: center;
-        padding: 10px 0;
+        padding: 5px 0;
     }
 
     .nav-links li a {
-        width: 100%;
-        display: block;
-        color: #333;
-        font-size: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 1rem;             /* tamaño proporcional */
+        padding: 8px 5px;
+    }
+
+    .nav-links li a::before {
+        margin-bottom: 5px;
     }
 
     .nav-links.show {
