@@ -45,16 +45,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+// Header que se reduce al hacer scroll
 window.addEventListener('scroll', () => {
     const header = document.querySelector('header');
-    const scrollThreshold = 50; // umbral de scroll
-    if(window.scrollY > scrollThreshold) {
-        if(!header.classList.contains('scrolled')) {
-            header.classList.add('scrolled');
-        }
+    if(window.scrollY > 50){  // si se ha hecho scroll más de 50px
+        header.classList.add('scrolled');
     } else {
-        if(header.classList.contains('scrolled')) {
-            header.classList.remove('scrolled');
-        }
+        header.classList.remove('scrolled');
     }
 });
