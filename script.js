@@ -25,7 +25,7 @@ if(form) {
 }
 
 // ------------------------------
-// Menú hamburguesa
+// Menú hamburguesa responsive con scroll bloqueado
 document.addEventListener("DOMContentLoaded", () => {
     const toggle = document.getElementById("menu-toggle");
     const navLinks = document.getElementById("nav-links");
@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (toggle && navLinks) {
         toggle.addEventListener("click", () => {
             navLinks.classList.toggle("show");
+            document.body.classList.toggle("no-scroll"); // 🔹 Bloquea scroll del body
         });
 
         // Cerrar menú al hacer click en un enlace
@@ -40,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
         links.forEach(link => {
             link.addEventListener("click", () => {
                 navLinks.classList.remove("show");
+                document.body.classList.remove("no-scroll"); // 🔹 desbloquear scroll
             });
         });
     }
