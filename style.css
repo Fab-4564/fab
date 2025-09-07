@@ -230,6 +230,10 @@ footer {
     font-weight: bold;
 }
 
+.banner-content h1 .highlight {
+    color: rgb(96, 165, 250);
+}
+
 .banner-content p {
     font-size: 1.5rem; 
     margin-bottom: 40px;
@@ -428,4 +432,124 @@ footer {
 .bubble:hover .tooltip {
     opacity: 1;
     transform: translateX(0);
+}
+
+/* --- Sección Servicios --- */
+/* --- Sección Servicios --- */
+.servicios {
+    padding: 80px 20px;
+    background: #fff;
+}
+
+.servicios-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px; /* separación entre texto e imagen */
+    padding: 40px 60px;
+}
+
+.servicios-texto {
+    flex: 1;              /* ocupa espacio flexible */
+    max-width: 50%;       /* la mitad del ancho */
+    text-align: left;
+}
+
+.servicios-texto h2 {
+    font-size: 4rem;   /* antes seguro estaba en 2rem o menos */
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.servicios-texto p {
+    font-size: 1.5rem;   /* más grande y legible */
+    line-height: 1.8;
+    margin-bottom: 25px;
+    color: #444;
+}
+
+.servicios-texto .banner-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: flex-start;
+}
+
+.servicios-texto .banner-buttons .btn {
+    font-size: 1.2rem;   /* botones más visibles */
+    padding: 14px 28px;
+}
+
+/* Botón outline azul */
+.btn-certificaciones {
+    background-color: transparent !important;
+    color: rgb(37, 99, 235) !important;
+    border: 2px solid rgb(37, 99, 235) !important;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+/* Hover: invertido */
+.btn-certificaciones:hover {
+    background-color: rgb(37, 99, 235) !important;
+    color: #fff !important;
+}
+
+.highlight {
+    color: rgb(37, 99, 235);
+}
+
+.servicios-imagen {
+    flex: 1;
+    max-width: 50%;
+}
+
+.servicios-imagen img {
+    width: 75%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+/* Cards */
+.servicios-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.card-servicio {
+    padding: 20px;
+}
+
+.icon-box {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 15px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-box i {
+    font-size: 2rem;
+    color: rgb(29, 78, 216);
+}
+
+.card-servicio h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: #222;
+}
+
+.card-servicio p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.4;
 }
