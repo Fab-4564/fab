@@ -44,3 +44,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    const scrollThreshold = 50; // umbral de scroll
+    if(window.scrollY > scrollThreshold) {
+        if(!header.classList.contains('scrolled')) {
+            header.classList.add('scrolled');
+        }
+    } else {
+        if(header.classList.contains('scrolled')) {
+            header.classList.remove('scrolled');
+        }
+    }
+});
