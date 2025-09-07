@@ -26,7 +26,7 @@ body.no-scroll {
 /* Header / Navegación */
 header {
     background-color: #fff;
-    padding: 20px 50px;/* padding relativo al tamaño de la pantalla */
+    padding: 20px 50px;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -44,7 +44,7 @@ header .logo img {
 
 header .logo span {
     font-size: 3rem;
-    line-height: 1; /* evita que baje o suba respecto al logo */
+    line-height: 1;
     transition: all 0.3s ease;
 }
 
@@ -56,7 +56,7 @@ header .nav-links li a {
 
 /* Header reducido al hacer scroll */
 header.scrolled {
-    padding: 10px 30px;   /* padding más pequeño fijo */
+    padding: 10px 30px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
@@ -67,7 +67,7 @@ header.scrolled .logo img {
 
 header.scrolled .logo span {
     font-size: 2rem;
-    line-height: 1; /* mantiene alineación vertical */
+    line-height: 1;
 }
 
 header.scrolled .nav-links li a {
@@ -86,7 +86,7 @@ nav ul {
     justify-content: center;
     list-style: none;
     gap: 25px;
-    flex-wrap: wrap; /* 🔹 permite que los botones bajen si no caben */
+    flex-wrap: wrap;
 }
 
 /* BOTONES DEL MENÚ */
@@ -97,21 +97,19 @@ nav ul {
     text-decoration: none;
     transition: color 0.3s, background 0.3s;
     position: relative;
-    padding: 30px 15px 8px;  /* espacio arriba para el ícono */
+    padding: 30px 15px 8px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* Hover azul */
 .nav-links li a:hover {
     color: #fff;
     background-color: rgb(29, 78, 216);
     border-radius: 5px;
 }
 
-/* Icono de herramienta arriba */
 .nav-links li a::before {
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
@@ -121,20 +119,19 @@ nav ul {
     color: rgb(29, 78, 216);
 }
 
-/* Animación de aparición del icono */
 .nav-links li a:hover::before {
     transform: translateY(-3px) scale(1.2);
     color: #fff;
 }
 
 /* Iconos específicos por botón */
-.nav-links li:nth-child(1) a::before { content: "\f015"; } /* Inicio → casa */
-.nav-links li:nth-child(2) a::before { content: "\f085"; } /* Servicios → engranaje */
-.nav-links li:nth-child(3) a::before { content: "\f0ad"; } /* Materiales → usuarios */
-.nav-links li:nth-child(4) a::before { content: "\f542"; } /* Proyectos → clipboard/lista */
-.nav-links li:nth-child(5) a::before { content: "\f02e"; } /* Certificaciones → medalla */
-.nav-links li:nth-child(6) a::before { content: "\f02d"; } /* Catálogo → libro */
-.nav-links li:nth-child(7) a::before { content: "\f0e0"; } /* Contacto → sobre */
+.nav-links li:nth-child(1) a::before { content: "\f015"; }
+.nav-links li:nth-child(2) a::before { content: "\f085"; }
+.nav-links li:nth-child(3) a::before { content: "\f0ad"; }
+.nav-links li:nth-child(4) a::before { content: "\f542"; }
+.nav-links li:nth-child(5) a::before { content: "\f02e"; }
+.nav-links li:nth-child(6) a::before { content: "\f02d"; }
+.nav-links li:nth-child(7) a::before { content: "\f0e0"; }
 
 /* Logo */
 .logo-link {
@@ -314,8 +311,8 @@ footer {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
         gap: 10px;
-        position: fixed;          /* 🔹 cambiar absolute → fixed */
-        top: 70px;                /* ajustar según tamaño del header reducido */
+        position: fixed;
+        top: 70px;
         left: 0;
         width: 100%;
         max-width: 100vw;
@@ -327,7 +324,7 @@ footer {
         pointer-events: none;
         transition: opacity 0.3s ease, transform 0.3s ease;
         z-index: 999;
-        max-height: calc(100vh - 70px);  /* altura completa menos header */
+        max-height: calc(100vh - 70px);
         overflow-y: auto;
     }
 
@@ -349,7 +346,7 @@ footer {
         display: flex;
         flex-direction: column;
         align-items: center;
-        font-size: 1rem;             /* tamaño proporcional */
+        font-size: 1rem;
         padding: 8px 5px;
     }
 
@@ -358,11 +355,11 @@ footer {
     }
 
     .nav-links.show {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
 
     .banner-content h1 {
         font-size: 2.5rem;
@@ -435,77 +432,108 @@ footer {
 }
 
 /* --- Sección Servicios --- */
-/* --- Sección Servicios --- */
 .servicios {
     padding: 80px 20px;
-    background: #fff;
+    background: #f9f9f9;
 }
 
 .servicios-top {
     display: flex;
-    align-items: center;
+    align-items: flex-start;   /* alinea el texto y la imagen al tope */
     justify-content: space-between;
-    gap: 40px; /* separación entre texto e imagen */
-    padding: 40px 60px;
+    gap: 40px;
+    flex-wrap: nowrap;         /* evita que la imagen baje al lado del texto */
 }
 
 .servicios-texto {
-    flex: 1;              /* ocupa espacio flexible */
-    max-width: 50%;       /* la mitad del ancho */
-    text-align: left;
+    flex: 0 0 50%;             /* ocupa la mitad izquierda */
+    margin-left: 5%;           /* margen desde el borde izquierdo */
 }
 
 .servicios-texto h2 {
-    font-size: 4rem;   /* antes seguro estaba en 2rem o menos */
-    font-weight: 700;
-    margin-bottom: 20px;
-    line-height: 1.2;
+    font-size: 2.5rem;
+    margin-bottom: 20px;      /* espacio entre título y párrafo */
+}
+
+/* Imagen */
+.servicios-imagen {
+    flex: 0 0 50%;             /* ocupa la mitad derecha */
+    max-width: 50%;            /* asegura que no sobrepase la mitad */
+    position: relative;
+}
+
+.servicios-imagen img {
+    width: 100%;               /* ocupa todo el bloque derecho */
+    height: auto;
+    border-radius: 10px;
 }
 
 .servicios-texto p {
-    font-size: 1.5rem;   /* más grande y legible */
-    line-height: 1.8;
-    margin-bottom: 25px;
-    color: #444;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;      /* espacio entre descripción y botones */
 }
 
-.servicios-texto .banner-buttons {
+.servicios-texto .highlight {
+    color: rgb(96, 165, 250);
+    font-weight: bold;
+}
+
+.servicios-texto .servicios-buttons {
     margin-top: 20px;
     display: flex;
     gap: 15px;
-    justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
-.servicios-texto .banner-buttons .btn {
-    font-size: 1.2rem;   /* botones más visibles */
-    padding: 14px 28px;
-}
-
-/* Botón outline azul */
-.btn-certificaciones {
-    background-color: transparent !important;
-    color: rgb(37, 99, 235) !important;
-    border: 2px solid rgb(37, 99, 235) !important;
-    font-weight: bold;
+.servicios-texto .servicios-buttons .btn {
+    padding: 12px 25px;
+    font-size: 1rem;
     border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
     transition: all 0.3s ease;
 }
 
-/* Hover: invertido */
+.btn-proyectos {
+    background-color: rgb(37, 99, 235);
+    color: #fff;
+}
+
+.btn-proyectos:hover {
+    background-color: rgb(29, 78, 216);
+}
+
+.btn-certificaciones {
+    background-color: transparent !important;  /* fondo transparente */
+    color: rgb(37, 99, 235) !important;        /* color de letra azul */
+    border: 2px solid rgb(37, 99, 235) !important; /* contorno azul */
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 14px 28px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
 .btn-certificaciones:hover {
     background-color: rgb(37, 99, 235) !important;
     color: #fff !important;
 }
 
-.highlight {
-    color: rgb(37, 99, 235);
-}
-
+/* Imagen del negocio */
 .servicios-imagen {
-    position: relative; /* Necesario para posicionar el bloque */
+    flex: 1 1 45%;
+    position: relative;
     display: inline-block;
 }
 
+.servicios-imagen img {
+    width: 70%;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+/* Mini bloque "15+ Años" */
 .trayectoria {
     position: absolute;
     bottom: 15px;
@@ -514,83 +542,31 @@ footer {
     padding: 10px 15px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    text-align: center;
+    text-align: right;
 }
 
-/* Número grande en azul */
 .trayectoria .numero {
-    display: block;
     font-size: 2rem;
-    font-weight: bold;
     color: rgb(37, 99, 235);
-    line-height: 1.2;
+    font-weight: bold;
 }
 
-/* Texto pequeño */
 .trayectoria .texto {
-    display: block;
     font-size: 0.9rem;
     color: #333;
 }
 
-.servicios-imagen img {
-    width: 75%;
-    height: auto;
-    border-radius: 10px;
-    object-fit: cover;
-}
-/* Cards */
-.servicios-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 30px;
-    text-align: center;
-}
-
-.card-servicio {
-    padding: 20px;
-}
-
-.icon-box {
-    width: 70px;
-    height: 70px;
-    margin: 0 auto 15px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.icon-box i {
-    font-size: 2rem;
-    color: rgb(29, 78, 216);
-}
-
-.card-servicio h3 {
-    font-size: 1.2rem;
-    margin-bottom: 8px;
-    font-weight: 700;
-    color: #222;
-}
-
-.card-servicio p {
-    font-size: 1rem;
-    color: #555;
-    line-height: 1.4;
-}
-
+/* Cards de servicios */
 .servicios-bottom {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
-    margin-top: 30px;
+    margin-top: 40px;
     justify-content: space-between;
 }
 
 .card {
-    flex: 1 1 220px; /* flexible pero mínimo ancho 220px */
+    flex: 1 1 220px;
     background: #fff;
     border-radius: 15px;
     padding: 20px;
@@ -611,7 +587,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(29, 78, 216, 0.1); /* cuadrado de sombra */
+    background: rgba(29, 78, 216, 0.1);
     border-radius: 10px;
     font-size: 1.5rem;
     color: rgb(29, 78, 216);
@@ -620,10 +596,92 @@ footer {
 .card h3 {
     font-weight: bold;
     margin-bottom: 8px;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 .card p {
-    font-size: 1.3rem;
+    font-size: 1rem;
     color: #555;
+    line-height: 1.4;
+}
+
+/* --- MEDIA QUERIES --- */
+@media (max-width: 1024px) {
+    .servicios-texto h2 {
+        font-size: 2rem;
+    }
+    .servicios-texto p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .servicios-top {
+        flex-direction: column;  /* apila texto e imagen */
+        align-items: center;
+        gap: 20px;
+    }
+
+    .servicios-texto {
+        flex: 1 1 100%;   /* ocupa todo el ancho en móviles */
+        margin-left: 0;   
+        margin-right: 0;
+        text-align: center; 
+        margin-bottom: 20px;
+    }
+
+    .servicios-texto,
+    .servicios-imagen {
+        flex: 1 1 100%;
+        margin-left: 0;
+        margin-right: 0;
+        text-align: center;
+    }
+
+    .servicios-imagen img {
+        width: 80%;              /* ajusta tamaño en móvil */
+    }
+
+    .servicios-texto h2 {
+        font-size: 2rem;
+    }
+
+    .servicios-texto p {
+        font-size: 1rem;
+    }
+
+    .servicios-texto, .servicios-imagen {
+        flex: 1 1 100%;
+    }
+    .servicios-texto .servicios-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .card {
+        flex: 1 1 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .servicios-texto h2 {
+        font-size: 1.7rem;
+    }
+    .servicios-texto p {
+        font-size: 1rem;
+    }
+    .servicios-texto .servicios-buttons .btn {
+        font-size: 0.95rem;
+        padding: 10px 20px;
+    }
+    .icono-card {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+    .card h3 {
+        font-size: 1rem;
+    }
+    .card p {
+        font-size: 0.9rem;
+    }
 }
