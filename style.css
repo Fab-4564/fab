@@ -502,8 +502,35 @@ footer {
 }
 
 .servicios-imagen {
-    flex: 1;
-    max-width: 50%;
+    position: relative; /* Necesario para posicionar el bloque */
+    display: inline-block;
+}
+
+.trayectoria {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: #fff;
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+/* Número grande en azul */
+.trayectoria .numero {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: rgb(37, 99, 235);
+    line-height: 1.2;
+}
+
+/* Texto pequeño */
+.trayectoria .texto {
+    display: block;
+    font-size: 0.9rem;
+    color: #333;
 }
 
 .servicios-imagen img {
