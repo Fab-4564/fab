@@ -301,6 +301,34 @@ footer {
     color: #000 !important;
 }
 
+/* Botones de la sección servicios adaptativos */
+.banner-buttons .btn,
+.btn-certificaciones {
+    font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+    padding: clamp(10px, 2vw, 16px) clamp(18px, 5vw, 35px);
+    border-radius: 8px;
+    min-width: 120px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Sticker "15+ Años de trayectoria" adaptativo */
+.trayectoria {
+    padding: clamp(6px, 1.5vw, 15px) clamp(10px, 3vw, 20px);
+    border-radius: 10px;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    bottom: clamp(8px, 2vw, 15px);
+    right: clamp(8px, 2vw, 15px);
+}
+
+.trayectoria .numero {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+}
+
+.trayectoria .texto {
+    font-size: clamp(0.7rem, 2vw, 1rem);
+}
+
 /* Menú hamburguesa responsive */
 .menu-toggle {
   display: none;
@@ -426,6 +454,15 @@ footer {
         font-size: 1rem;
         padding: 12px 25px;
     }
+
+    .btn-certificaciones,
+    .servicios-texto .servicios-buttons .btn {
+        font-size: clamp(0.9rem, 3vw, 1rem);
+        padding: clamp(8px, 2vw, 12px) clamp(14px, 5vw, 24px);
+        max-width: 250px;
+        margin: 0 auto;
+        display: inline-block;
+    }
 }
 
 /* Burbuja de contacto */
@@ -504,12 +541,6 @@ footer {
     margin-left: 50px;     /* margen solo a la izquierda del texto */
 }
 
-.servicios-texto h2 {
-    font-size: 70px;
-    margin-bottom: 20px;      /* espacio entre título y párrafo */
-}
-
-/* Imagen */
 .servicios-imagen {
     flex: 0 0 50%;         /* ocupa la otra mitad */
     position: relative;    /* para el sticker */
@@ -833,13 +864,12 @@ footer {
     .servicios-texto p {
         font-size: 0.95rem;
     }
-    .btn-certificaciones {
-        font-size: 0.9rem;
-        padding: 8px 16px;
-    }
+    .btn-certificaciones,
     .servicios-texto .servicios-buttons .btn {
-        font-size: 0.95rem;
-        padding: 10px 20px;
+        font-size: clamp(0.85rem, 4vw, 0.95rem);
+        padding: clamp(7px, 3vw, 10px) clamp(10px, 8vw, 18px);
+        width: 90vw;
+        max-width: 300px;
     }
     .icono-card {
         width: 45px;
@@ -856,16 +886,106 @@ footer {
     .card p {
         font-size: 0.9rem;
     }
+
+    .banner-buttons .btn,
+    .btn-certificaciones {
+        font-size: 1rem;
+        padding: 10px 0;
+        width: 90vw;
+        max-width: 300px;
+    }
+    .trayectoria {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+        right: 50%;
+        transform: translateX(50%);
+        bottom: 10px;
+    }
+    .trayectoria .numero {
+        font-size: 1.1rem;
+    }
+    .trayectoria .texto {
+        font-size: 0.8rem;
+    }
 }
 
-/* Animación de despliegue */
-@keyframes slideDown {
-    from {
-        max-height: 0;
-        opacity: 0;
+/* --- Sección Servicios Responsive Mejorada --- */
+.servicios {
+    padding: clamp(40px, 8vw, 80px) 2vw;
+    background: #f9f9f9;
+}
+
+.servicios-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3vw;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.servicios-texto {
+    flex: 1 1 420px;
+    min-width: 220px;
+    max-width: 600px;
+    text-align: left;
+    margin-left: 1vw; /* Reducido el margen izquierdo */
+}
+
+.servicios-imagen {
+    flex: 1 1 600px; /* Permite que la imagen crezca más */
+    min-width: 260px;
+    max-width: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 0 auto;
+}
+
+.servicios-imagen img {
+    width: 100%;
+    max-width: 520px; /* Imagen más grande */
+    min-width: 180px;
+    border-radius: 18px;
+    object-fit: cover;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+}
+
+/* Responsive para tablets y móviles */
+@media (max-width: 900px) {
+    .servicios-top {
+        flex-direction: column;
+        align-items: center;
+        gap: 4vw;
     }
-    to {
-        max-height: 500px; /* suficiente para mostrar items */
-        opacity: 1;
+    .servicios-texto,
+    .servicios-imagen {
+        flex: 1 1 100%;
+        margin: 0 auto 2vw auto;
+        max-width: 98vw;
+        min-width: 0;
+        text-align: center;
+    }
+    .servicios-texto {
+        margin-left: 0; /* Sin margen en móvil/tablet */
+    }
+    .servicios-imagen img {
+        width: 98vw;
+        max-width: 98vw;
+        min-width: 120px;
+    }
+}
+
+/* Responsive para móviles pequeños */
+@media (max-width: 600px) {
+    .servicios {
+        padding: 24px 2vw;
+    }
+    .servicios-imagen img {
+        width: 100vw;
+        max-width: 100vw;
+        min-width: 100px;
     }
 }
