@@ -1,3 +1,8 @@
+html {
+    scroll-behavior: smooth;
+}
+
+
 /* Reset básico */
 * {
     margin: 0;
@@ -13,6 +18,7 @@
 }
 
 body {
+    overflow-x: hidden;
     font-family: 'Exo 2', sans-serif !important;
     background-color: #f4f4f4;
     color: #333;
@@ -29,11 +35,9 @@ header {
     padding: 20px 50px;
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 1000; /* el header está debajo del logo si es necesario */
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    font-family: 'Poppins', sans-serif !important;
     border-radius: 20px;
-    transition: all 0.3s ease;
 }
 
 header .logo img {
@@ -79,6 +83,8 @@ header.scrolled .nav-links li a {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative; /* para contener los elementos */
+    z-index: 1000; /* menor que logo-link, así el logo siempre está arriba */
 }
 
 nav ul {
@@ -86,10 +92,21 @@ nav ul {
     justify-content: center;
     list-style: none;
     gap: 25px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* 👈 Esto lo quitamos o lo dejamos sin efecto en responsive */
+    overflow: hidden;  /* 👈 evita que se salga del ancho */
 }
 
 /* BOTONES DEL MENÚ */
+
+.nav-links {
+    z-index: 900; /* menos que el logo-link */
+}
+
+.nav-links li {
+    flex-shrink: 0; /* evita que los botones se achiquen */
+}
+
+
 .nav-links li a {
     font-size: 1.3rem;
     font-weight: 600;
@@ -140,21 +157,22 @@ nav ul {
     gap: 10px;
     text-decoration: none;
     cursor: pointer;
+    z-index: 1100; /* más alto que cualquier menú o elemento */
+    position: relative; /* necesario para que z-index funcione */
 }
 
 .logo-link img {
-    width: 10vw;
-    max-width: 80px;
-    height: auto;
+    width: 80px;
+    height: 80px;
     transition: transform 0.3s ease;
 }
 
 .logo-link span {
-    font-size: 3vw;
-    max-font-size: 3rem;
+    font-size: 3rem;
     font-weight: 700;
     color: #333;
     transition: color 0.3s ease;
+    white-space: nowrap; /* evita que se divida en varias líneas */
 }
 
 .logo-link:hover img {
@@ -439,44 +457,50 @@ footer {
 
 .servicios-top {
     display: flex;
-    align-items: flex-start;   /* alinea el texto y la imagen al tope */
+    flex-wrap: wrap;       /* permite bajar en móviles */
+    align-items: flex-start;
     justify-content: space-between;
-    gap: 40px;
-    flex-wrap: nowrap;         /* evita que la imagen baje al lado del texto */
+    gap: 20px;
 }
 
 .servicios-texto {
-    flex: 0 0 50%;             /* ocupa la mitad izquierda */
-    margin-left: 5%;           /* margen desde el borde izquierdo */
+    flex: 0 0 50%;         /* ocupa exactamente la mitad del ancho */
+    text-align: left;
+    margin-left: 50px;     /* margen solo a la izquierda del texto */
 }
 
 .servicios-texto h2 {
-    font-size: 2.5rem;
+    font-size: 70px;
     margin-bottom: 20px;      /* espacio entre título y párrafo */
 }
 
 /* Imagen */
 .servicios-imagen {
-    flex: 0 0 50%;             /* ocupa la mitad derecha */
-    max-width: 50%;            /* asegura que no sobrepase la mitad */
-    position: relative;
+    flex: 0 0 50%;         /* ocupa la otra mitad */
+    position: relative;    /* para el sticker */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .servicios-imagen img {
-    width: 100%;               /* ocupa todo el bloque derecho */
+    width: 100%;           /* ocupa todo el ancho del contenedor */
     height: auto;
     border-radius: 10px;
+    object-fit: cover;
 }
 
 .servicios-texto p {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     line-height: 1.6;
     margin-bottom: 25px;      /* espacio entre descripción y botones */
 }
 
 .servicios-texto .highlight {
-    color: rgb(96, 165, 250);
+    font-size: clamp(1.5rem, 6vw, 70px); /* mínimo 1.5rem, escala con viewport, máximo 70px */
+    color: rgb(37, 99, 235);
     font-weight: bold;
+    word-wrap: break-word; /* evita que sobresalga */
 }
 
 .servicios-texto .servicios-buttons {
@@ -505,6 +529,7 @@ footer {
 }
 
 .btn-certificaciones {
+    font-size: 20px;
     background-color: transparent !important;  /* fondo transparente */
     color: rgb(37, 99, 235) !important;        /* color de letra azul */
     border: 2px solid rgb(37, 99, 235) !important; /* contorno azul */
@@ -542,16 +567,18 @@ footer {
     padding: 10px 15px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    text-align: right;
+    text-align: center;
 }
 
 .trayectoria .numero {
+    display: block;
     font-size: 2rem;
-    color: rgb(37, 99, 235);
     font-weight: bold;
+    color: rgb(37, 99, 235);
 }
 
 .trayectoria .texto {
+    display: block;
     font-size: 0.9rem;
     color: #333;
 }
@@ -607,76 +634,151 @@ footer {
 
 /* --- MEDIA QUERIES --- */
 @media (max-width: 1024px) {
-    .servicios-texto h2 {
-        font-size: 2rem;
+    .nav-links {
+        display: none;  /* oculta todos los botones */
     }
-    .servicios-texto p {
-        font-size: 1.1rem;
+
+    .menu-toggle {
+        display: block; /* aparece el icono sandwich */
+        font-size: 2rem;
+        cursor: pointer;
+    }
+
+    .nav-links.show {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+        background: #fff;
+        padding: 15px;
     }
 }
 
+
 @media (max-width: 768px) {
+
+    .trayectoria {
+        bottom: 10px;
+        right: 50%;
+        transform: translateX(50%);
+    }
+
+    .trayectoria .numero {
+        font-size: 1.8rem;
+    }
+
+    .trayectoria .texto {
+        font-size: 0.9rem;
+    }
+
+
     .servicios-top {
-        flex-direction: column;  /* apila texto e imagen */
+        flex-direction: column;
         align-items: center;
-        gap: 20px;
-    }
-
-    .servicios-texto {
-        flex: 1 1 100%;   /* ocupa todo el ancho en móviles */
-        margin-left: 0;   
-        margin-right: 0;
-        text-align: center; 
-        margin-bottom: 20px;
-    }
-
-    .servicios-texto,
-    .servicios-imagen {
-        flex: 1 1 100%;
-        margin-left: 0;
-        margin-right: 0;
         text-align: center;
     }
 
+    .servicios-texto {
+        flex: 1 1 100%;
+        margin: 0 auto 20px auto;
+        text-align: center;
+        max-width: 90%;
+    }
+
+    .servicios-imagen {
+        flex: 1 1 100%;
+        margin: 0 auto 20px auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    .servicios-texto, .servicios-imagen {
+        flex: 1 1 100%;           /* ambos ocupan todo el ancho */
+        margin-left: 0;           /* quitar margen en responsive */
+    }
+
     .servicios-imagen img {
-        width: 150%;              /* ajusta tamaño en móvil */
+        width: 100%;
+        max-width: 350px;
+        height: auto;
     }
 
     .servicios-texto h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        line-height: 1.2;
+        word-wrap: break-word;
     }
 
     .servicios-texto p {
         font-size: 1rem;
+        margin-bottom: 15px;
+    }
+
+    .btn-certificaciones {
+        font-size: 1rem;
+        padding: 10px 20px;
+        max-width: 250px;
+        margin: 0 auto;
+        display: inline-block;
+    }
+
+    .servicios-bottom {
+        flex-direction: column;
+        align-items: center;
     }
 
     .servicios-texto, .servicios-imagen {
         flex: 1 1 100%;
     }
+
     .servicios-texto .servicios-buttons {
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
+        align-items: center;
     }
+
     .card {
-        flex: 1 1 100%;
+        width: 90%;
+        max-width: 350px;
+    }
+
+    .contact-bubbles {
+        bottom: 15px;
+        right: 15px;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .bubble {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
     }
 }
 
 @media (max-width: 480px) {
     .servicios-texto h2 {
-        font-size: 1.7rem;
+        font-size: 1.5rem;
     }
     .servicios-texto p {
-        font-size: 1rem;
+        font-size: 0.95rem;
+    }
+    .btn-certificaciones {
+        font-size: 0.9rem;
+        padding: 8px 16px;
     }
     .servicios-texto .servicios-buttons .btn {
         font-size: 0.95rem;
         padding: 10px 20px;
     }
     .icono-card {
-        width: 50px;
-        height: 50px;
-        font-size: 1.3rem;
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+    .card {
+        width: 100%;
+        max-width: 320px;
     }
     .card h3 {
         font-size: 1rem;
