@@ -1,3 +1,4 @@
+// ------------------------------
 // Animación al hacer scroll
 window.addEventListener('scroll', () => {
     const sections = document.querySelectorAll('section');
@@ -14,6 +15,7 @@ window.addEventListener('scroll', () => {
     });
 });
 
+// ------------------------------
 // Formulario simple
 const form = document.getElementById('contactForm');
 if(form) {
@@ -25,31 +27,47 @@ if(form) {
 }
 
 // ------------------------------
-// Menú hamburguesa responsive con scroll bloqueado
+// Menú hamburguesa responsive con cierre al hacer click fuera
 document.addEventListener("DOMContentLoaded", () => {
     const toggle = document.getElementById("menu-toggle");
     const navLinks = document.getElementById("nav-links");
 
     if (toggle && navLinks) {
-        toggle.addEventListener("click", () => {
-        navLinks.classList.toggle("show");
+
+        // Abrir/Cerrar menú al click
+        toggle.addEventListener("click", (e) => {
+            navLinks.classList.toggle("show");
+            // ❌ No bloqueamos el scroll
         });
 
         // Cerrar menú al hacer click en un enlace
         navLinks.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", () => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("show");
+            });
+        });
+
+        // Cerrar menú si se hace click fuera del menú y toggle
+        document.addEventListener("click", (e) => {
+            if(!navLinks.contains(e.target) && !toggle.contains(e.target)) {
+                navLinks.classList.remove("show");
+            }
+        });
+
+        // Cerrar menú si se hace scroll
+        window.addEventListener('scroll', () => {
             navLinks.classList.remove("show");
         });
-        });
     }
-    });
+});
 
-    // Header que se reduce al hacer scroll
-    window.addEventListener('scroll', () => {
-        const header = document.querySelector('header');
-        if(window.scrollY > 50){  // si se ha hecho scroll más de 50px
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
+// ------------------------------
+// Header que se reduce al hacer scroll
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if(window.scrollY > 50){  
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
 });
