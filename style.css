@@ -640,8 +640,9 @@ footer {
 
     .menu-toggle {
         display: block; /* aparece el icono sandwich */
-        font-size: 2rem;
-        cursor: pointer;
+    }
+    .nav-links {
+        display: none; /* oculta los botones */
     }
 
     .nav-links.show {
